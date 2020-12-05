@@ -6,6 +6,22 @@ export default function App() {
   const [position, setPosition] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
   const [holderValue, setHolderValue] = useState(null); // temp value
   const [holderIndex, setHolderIndex] = useState(null); // temp index
+  const [win, setWin] = useState(false);
+  const defaultPosition = [0, 0, 0, 0, 0, 0, 0, 0];
+
+  useEffect(() => {
+    let numOfZeros = 0;
+    position.forEach((element) => {
+      if (element === 0) {
+        ++numOfZeros;
+      }
+    });
+    console.log("this is number of zeros: " + numOfZeros);
+    if (numOfZeros === 0) {
+      console.log("YOU WIN!!!!");
+      setWin(true);
+    }
+  });
 
   function cardClick(index) {
     console.log(
@@ -20,14 +36,14 @@ export default function App() {
       setHolderValue(cards[index]);
       setHolderIndex(index);
       // gives the value and index of selected 1st card.
-      const tempPosition = [...position]; //spread this poisitong becuse now its set to 1 visable.
+      let tempPosition = [...position]; //spread this poisitong becuse now its set to 1 visable.
       tempPosition[index] = 1;
       console.log(tempPosition);
       setPosition(tempPosition);
     } else if (holderValue === cards[index]) {
       // got a card already now checkin if match
       console.log("hello match!");
-      const tempPosition = [...position]; //spread this poisitong becuse now its set to a matching pair.
+      let tempPosition = [...position]; //spread this poisitong becuse now its set to a matching pair.
       tempPosition[index] = 1;
       setPosition(tempPosition);
       setHolderValue(null);
@@ -54,25 +70,43 @@ export default function App() {
     }
   }
 
+  function newGameHandler() {
+    console.log("hey you clicked!");
+    let tempPosition = [...position]; //spread this poisitong becuse now its set to a matching pair.
+    tempPosition = defaultPosition;
+    setPosition(tempPosition);
+    setWin(false);
+  }
+
   console.log("this is temp index:" + holderIndex);
   console.log("this is temp value:" + holderValue);
 
   return (
     <div className="App">
-      <div> 1, 2, 4, 5, 2, 4, 1, 5 </div>
-      {cards &&
-        cards.map((v, i) => {
-          return (
-            <button
-              onClick={() => cardClick(i)}
-              className="card"
-              key={i}
-              disabled={position[i]}
-            >
-              {position[i] ? v : ""}
-            </button>
-          );
-        })}
+      <div className="container-cards">
+        {cards &&
+          cards.map((v, i) => {
+            return (
+              <button
+                onClick={() => cardClick(i)}
+                className="card"
+                key={i}
+                disabled={position[i]}
+              >
+                {position[i] ? v : ""}
+              </button>
+            );
+          })}
+      </div>
+      <div className="score">your score is:</div>
+      {win && (
+        <div>
+          you win!!!!
+          <div>
+            <button onClick={newGameHandler}>Play Again?</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
