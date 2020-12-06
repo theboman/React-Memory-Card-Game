@@ -5,9 +5,11 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "framer-motion": "2.9.5",
     "react": "17.0.0",
     "react-dom": "17.0.0",
-    "react-scripts": "3.4.3"
+    "react-scripts": "3.4.3",
+    "use-sound": "2.0.1"
   },
   "devDependencies": {
     "typescript": "3.8.3"
