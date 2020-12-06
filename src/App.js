@@ -93,7 +93,7 @@ export default function App() {
                 key={i}
                 disabled={position[i]}
               >
-                {position[i] ? v : ""}
+                {position[i] ? v : <pre> </pre>}
               </button>
             );
           })}

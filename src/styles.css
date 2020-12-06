@@ -2,8 +2,27 @@
   font-family: sans-serif;
   text-align: center;
 }
+.container-cards {
+  height: 80px;
+  margin: 0px;
+  padding: 0px;
+}
 
 .card {
+  z-index: 0;
+  box-sizing: border-box;
   height: 70px;
   width: 50px;
+  /* padding: 20px; */
+  margin: 1px;
+  border-radius: 3px;
+  border: 1px solid black;
+}
+
+.card:disabled {
+  z-index: 0;
+  background-color: #d8d8d8;
+  color: black;
+  border-color: #6f6f6f;
+  border-width: 1px;
 }

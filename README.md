@@ -3,6 +3,8 @@ React - Simple card memory game.
 This was built on codesandbox.io and uses netlify for deployment:
 live app is here: [https://csb-h1hh8.netlify.app/]
 
+- [ ] BUG can select a single card and make active...
+
 - [x] Need check WIN - if the array has any 0's still
 - [ ] add a running score?
 - [x] add button for new game?
