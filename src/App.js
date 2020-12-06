@@ -13,10 +13,10 @@ export default function App() {
 
   const [play] = useSound(sounds, {
     sprite: {
-      correct: [300, 750],
-      wrong: [1000, 1400],
-      cardFlip: [2000, 2400],
-      btnSound: [2500, 2900]
+      correct: [300, 350],
+      wrong: [1000, 400],
+      cardFlip: [2000, 400],
+      btnSound: [2500, 400]
     }
   });
 
