@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import useSound from "use-sound";
+import sounds from "./memory_game_sounds.mp3";
 import "./styles.css";
 
 export default function App() {
@@ -9,6 +11,15 @@ export default function App() {
   const [win, setWin] = useState(false);
   const defaultPosition = [0, 0, 0, 0, 0, 0, 0, 0];
 
+  const [play] = useSound(sounds, {
+    sprite: {
+      correct: [300, 750],
+      wrong: [1000, 1400],
+      cardFlip: [2000, 2400],
+      btnSound: [2500, 2900]
+    }
+  });
+
   useEffect(() => {
     let numOfZeros = 0;
     position.forEach((element) => {
@@ -16,7 +27,7 @@ export default function App() {
         ++numOfZeros;
       }
     });
-    console.log("this is number of zeros: " + numOfZeros);
+
     if (numOfZeros === 0) {
       console.log("YOU WIN!!!!");
       setWin(true);
@@ -27,6 +38,7 @@ export default function App() {
     console.log(
       `this is index: ${index}, this is the value of the card: ${cards[index]}, this is if its up or down ${position[index]}`
     );
+    play({ id: "cardFlip" });
     // add variable for number of guesses?
     // check if any zeros in postion? check for win
     console.log("this is holder value" + holderValue);
